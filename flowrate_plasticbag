@@ -1,0 +1,24 @@
+def calculate_flow_rate(volume_liters, time_seconds):
+    # Convert volume from liters to cubic feet (1 liter = 0.0353147 cubic feet)
+    volume_cubic_feet = volume_liters * 0.0353147
+    
+    # Convert time from seconds to minutes
+    time_minutes = time_seconds / 60.0
+    
+    # Calculate flow rate in cubic feet per minute
+    flow_rate_cubic_feet_per_minute = volume_cubic_feet / time_minutes
+    
+    # Convert flow rate from cubic feet per minute to feet per minute (assuming a cylindrical bag)
+    # If the bag's shape differs significantly, this conversion might not be accurate
+    radius_feet = (0.5 * (volume_cubic_feet / 3.14159)) ** (1/2) # assuming a cylindrical bag
+    area_feet_squared = 3.14159 * (radius_feet ** 2)
+    flow_rate_feet_per_minute = flow_rate_cubic_feet_per_minute / area_feet_squared
+    
+    return flow_rate_feet_per_minute
+
+# Example usage:
+volume_liters = 10  # Example volume of the plastic bag in liters
+time_seconds = 30  # Example time for filling up the bag in seconds
+
+flow_rate_feet_per_minute = calculate_flow_rate(volume_liters, time_seconds)
+print("Flow rate:", flow_rate_feet_per_minute, "feet per minute")
